@@ -25,6 +25,13 @@ config :logger, :console,
 # Use Jason for JSON parsing in Phoenix
 config :phoenix, :json_library, Jason
 
+config :simple_otp, SimpleOtpWeb.Services.Guardian,
+  allowed_algos: ["HS512"],
+  issuer: "simple_otp",
+  ttl: {1, :day},
+  allowed_drift: 2000,
+  secret_key: "d8ehdjW7qx45F2s+wW0RieXKHlWIWIafaX6lMC/SSlEV1+lD5ePDx+29Rl91qACj"
+
 # Import environment specific config. This must remain at the bottom
 # of this file so it overrides the configuration defined above.
 import_config "#{Mix.env()}.exs"
