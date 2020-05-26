@@ -1,0 +1,115 @@
+<%= render SimpleOtpWeb.SharedView, "flash.html", conn: @conn %>
+<div class="row pt-3">
+  <div class="col-auto">
+    <h3 class="font-weight-normal text-white pt-1"><%= @vault.name %></h3>
+  </div>
+  <div class="col-auto mb-4 pl-1 pr-1 mb-0">
+    <button class="btn btn-block btn-sm pl-0 pr-0" data-toggle="modal" data-target="#addShellModal">
+      <%= img_tag(icon(@conn, "delete.svg"), style: "width: 30px;") %>
+    </button>
+  </div>
+  <div class="col-auto mb-4 pl-1 pr-1 mb-0">
+    <button class="btn btn-block btn-sm pl-0 pr-0" data-toggle="modal" data-target="#addShellModal">
+      <%= img_tag(icon(@conn, "edit.svg"), style: "width: 30px;") %>
+    </button>
+  </div>
+  <div class="col-auto mr-auto pl-1 pr-1 mb-0">
+    <button class="btn btn-block btn-sm pl-0 pr-0" data-toggle="modal" data-target="#addShellModal">
+      <span class="oi oi-plus"></span>
+      <%= img_tag(icon(@conn, "add.svg"), style: "width: 30px;") %>
+    </button>
+  </div>
+  <div class="col-md-4">
+    <%= form_for @conn, Routes.page_path(@conn, :index), [method: :get], fn f -> %>
+        <%= text_input f, :query, class: "form-control search", placeholder: "Search" %>
+    <% end %>
+  </div>
+</div>
+
+<div class="">
+  <%= for shells <- sort_shells(@shells) do %>
+    <div class="row">
+      <%= for shell <- shells do %>
+      <div class="col-md-4 pt-3">
+        <div class="card">
+          <%= link to: Routes.page_path(@conn, :shell, shell), style: "text-decoration: none;" do %>
+            <div class="card-header tc-dim shell-header">
+              <div class="row">
+                <div class="col-auto mr-auto">
+                  <b><%= shell.name %></b>
+                </div>
+              </div>
+            </div>
+          <% end %>
+          <div class="card-body">
+            <h1 id="otp-<%= shell.id %>" class="font-weight-light card-title pricing-card-title text-center tc-bloody" style="padding-top: 25px;">
+              <%= render_totp(shell.secret) %>
+            </h1>
+          </div>
+        </div>
+      </div>
+      <% end %>
+    </div>
+  <% end %>
+</div>
+
+<div class="modal fade" id="addShellModal" tabindex="-1" role="dialog" aria-labelledby="addShellModalLabel" aria-hidden="true">
+  <div class="modal-dialog bg-md-dark" role="document">
+    <div class="modal-content bg-md-dark">
+      <div class="modal-header" style="border-bottom: none;">
+        <h5 class="modal-title" id="addShellModalLabel">Add shell</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <%= form_for @conn, Routes.page_path(@conn, :create_shell, @vault), fn f -> %>
+        <div class="modal-body">
+          <div class="form-group">
+            <div class="column">
+              <div class="form-group">
+                <div class="">
+                  <%= label(f, :secret, "Secret") %>
+                  <span class="font-weight-lighter small tc-dimmer" >[required]</span>
+                </div>
+                <%= text_input f, :secret, required: true, class: "form-control", autocomplete: "off" %>
+              </div>
+              <div class="form-group">
+                <div class="">
+                  <%= label(f, :name, "Name") %>
+                  <span class="font-weight-lighter small tc-dimmer" >[required]</span>
+                </div>
+                <%= text_input f, :name, required: true, class: "form-control", autocomplete: "off" %>
+              </div>
+              <div class="form-group">
+                <%= label(f, :uri, "URI") %>
+                <%= text_input f, :uri, class: "form-control", autocomplete: "off" %>
+              </div>
+              <div class="form-group">
+                <%= label(f, :recovery_code, "Recovery Code") %>
+                <%= text_input f, :recovery_code, class: "form-control", autocomplete: "off" %>
+              </div>
+              <div class="form-group">
+                <%= label(f, :description, "Description") %>
+                <%= text_input f, :description, class: "form-control", autocomplete: "off" %>
+              </div>
+              <div class="form-group">
+                <%= label(f, :email, "Email") %>
+                <%= email_input f, :email, class: "form-control", autocomplete: "off" %>
+              </div>
+              <div class="form-group">
+                <%= label(f, :username, "Username") %>
+                <%= text_input f, :username, class: "form-control", autocomplete: "off" %>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer" style="border-top: none;">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="submit" class="btn btn-danger">Save</button>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+<script>window.vaultId = "<%= @vault.id %>"</script>
