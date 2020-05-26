@@ -11,9 +11,10 @@ defmodule SimpleOtp.Application do
       # Start the Ecto repository
       SimpleOtp.Repo,
       # Start the endpoint when the application starts
-      SimpleOtpWeb.Endpoint
+      SimpleOtpWeb.Endpoint,
       # Starts a worker by calling: SimpleOtp.Worker.start_link(arg)
       # {SimpleOtp.Worker, arg},
+      SimpleOtpWeb.Services.Scheduler
     ]
 
     # See https://hexdocs.pm/elixir/Supervisor.html
