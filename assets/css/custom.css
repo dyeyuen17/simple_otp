@@ -96,6 +96,7 @@ body {
 
 .vault-card:hover {
   background-color: #dc3545!important;
+  color: #fff!important;
 }
 
 .green {
@@ -120,4 +121,5 @@ body {
 
 .shell-header:hover {
   background-color: #dc3545!important;
+  color: #fff!important;
 }
