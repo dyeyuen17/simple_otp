@@ -10,7 +10,12 @@ defmodule SimpleOtpWeb.Router do
   end
 
   pipeline :auth do
-    plug SimpleOtpWeb.Plugs.Authentication
+    plug SimpleOtpWeb.Services.Pipeline
+    plug SimpleOtpWeb.Services.CurrentUser
+  end
+
+  pipeline :ensure_auth do
+    plug Guardian.Plug.EnsureAuthenticated
   end
 
   pipeline :api do
@@ -18,13 +23,14 @@ defmodule SimpleOtpWeb.Router do
   end
 
   scope "/", SimpleOtpWeb do
-    pipe_through :browser
+    pipe_through [:browser, :auth]
 
     get "/", PageController, :index
   end
 
   scope "/", SimpleOtpWeb do
-    pipe_through [:browser, :auth]
+    pipe_through [:browser, :auth, :ensure_auth]
+
   end
 
   # Other scopes may use custom stacks.

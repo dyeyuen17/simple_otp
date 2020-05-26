@@ -25,6 +25,10 @@ config :logger, :console,
 # Use Jason for JSON parsing in Phoenix
 config :phoenix, :json_library, Jason
 
+config :simple_otp, SimpleOtpWeb.Services.Guardian,
+  issuer: "simple_otp",
+  secret_key: "42q8YJ3wDfLEtXrPtBa+VuWUNoRFuwt66KVnoDx976mWuPCO0oODVx+kHTXaj8AO"
+
 config :simple_otp, SimpleOtpWeb.Services.Scheduler,
   jobs: [
     {"* * * * *", {SimpleOtpWeb.OtpChannel, :refresh_otp, []}},
