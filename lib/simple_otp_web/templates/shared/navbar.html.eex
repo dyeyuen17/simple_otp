@@ -1,0 +1,18 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-md-dark sticky-top">
+  <%= link to: Routes.page_path(@conn, :dashboard), style: "text-decoration: none;", class: "navbar-brand" do %>
+    <%= img_tag(logo(@conn), style: "width: 30px;") %>
+  <% end %>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNavDropdown">
+    <ul class="navbar-nav">
+      <li class='nav-item <%= active_link(@conn, "dashboard") %>'>
+        <%= link "Vaults", to: Routes.page_path(@conn, :dashboard), class: "nav-link"%>
+      </li>
+      <li class="nav-item">
+        <%= link "Logout", to: Routes.page_path(@conn, :sign_out), class: "nav-link"%>
+      </li>
+    </ul>
+  </div>
+</nav>
