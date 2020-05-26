@@ -26,11 +26,22 @@ defmodule SimpleOtpWeb.Router do
     pipe_through [:browser, :auth]
 
     get "/", PageController, :index
+    get "/create-user", PageController, :new
+    post "/sign-up", PageController, :sign_up
+    post "/sign-in", PageController, :sign_in
+    get "/sign-out", PageController, :sign_out
   end
 
   scope "/", SimpleOtpWeb do
     pipe_through [:browser, :auth, :ensure_auth]
 
+    get "/dashboard", PageController, :dashboard
+    post "/create-vault", PageController, :create_vault
+
+    get "/vault/:id/shells", PageController, :shells
+    post "/vault/:id/create-shell", PageController, :create_shell
+
+    get "/shell/:id", PageController, :shell
   end
 
   # Other scopes may use custom stacks.
