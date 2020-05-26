@@ -1,0 +1,78 @@
+<div class="vaults mb-4">
+  <%= for vaults <- sort_vaults(@vaults) do %>
+    <div class="row">
+      <%= for vault <- vaults do %>
+        <div class="col-md-4 pt-4">
+          <%= link to: Routes.page_path(@conn, :shells, vault), style: "text-decoration: none;", class: "btn btn-block vault-card" do %>
+            <div class="text-center">
+              <div class="pt-5 mt-3">
+                <h3 class="font-weight-light"><%= vault.name %></h3>
+              </div>
+            </div>
+          <% end %>
+        </div>
+      <% end %>
+      <%= if length(vaults) < 3 do %>
+        <div class="col-md-4 pt-4">
+          <button class="btn btn-block btn-danger add-card" data-toggle="modal" data-target="#addShellModal">
+            <div class="row justify-content-end">
+              <div class="col-4">
+              </div>
+              <div class="col-4">
+                <h1 class="add-i pb-2 pl-0 pr-0 ml-3" style="width: 60px;">+</h1>
+              </div>
+              <div class="col-4">
+              </div>
+            </div>
+          </button>
+        </div>
+      <% end %>
+    </div>
+  <% end %>
+  <%= if rem(length(@vaults), 3) == 0 do %>
+    <div class="row">
+      <div class="col-md-4 pt-4">
+        <button class="btn btn-block btn-danger add-card" data-toggle="modal" data-target="#addShellModal">
+          <div class="row justify-content-end">
+            <div class="col-4">
+            </div>
+            <div class="col-4">
+              <h1 class="add-i pb-2 pl-0 pr-0 ml-3" style="width: 60px;">+</h1>
+            </div>
+            <div class="col-4">
+            </div>
+          </div>
+        </button>
+      </div>
+    </div>
+  <% end %>
+</div>
+
+<div class="modal fade" id="addShellModal" tabindex="-1" role="dialog" aria-labelledby="addShellModalLabel" aria-hidden="true">
+  <div class="modal-dialog bg-md-dark" role="document">
+    <div class="modal-content bg-md-dark">
+      <div class="modal-header" style="border-bottom: none;">
+        <h5 class="modal-title" id="addShellModalLabel">Create new vault</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <%= form_for @conn, Routes.page_path(@conn, :create_vault), fn f -> %>
+        <div class="modal-body">
+          <div class="form-group">
+            <div class="column">
+              <div class="form-group">
+                <%= label(f, :name, "Name") %>
+                <%= text_input f, :name, required: true, class: "form-control", autocomplete: "off" %>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer" style="border-top: none;">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="submit" class="btn btn-danger">Save</button>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
