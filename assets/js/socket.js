@@ -55,9 +55,27 @@ let socket = new Socket("/socket", {params: {token: window.userToken}})
 socket.connect()
 
 // Now that you are connected, you can join channels with a topic:
-let channel = socket.channel("topic:subtopic", {})
+let channel = socket.channel("otp_hub:vault", {})
+let vaultId = window.vaultId
+
+channel.on("refresh_otp", payload => {
+  if (vaultId) {
+    channel.push('refresh_otp', {id: vaultId})
+  }
+})
+
+channel.on("refresh_otp_value", payload => {
+  if (payload) {
+    for (var i = 0; i < payload.otp_keys.length; i++) {
+      let otp_object = payload.otp_keys[i]
+      let chatInput = document.querySelector(`#otp-${otp_object.id}`)
+      chatInput.innerText = `${otp_object.otp}`
+    }
+  }
+})
+
 channel.join()
-  .receive("ok", resp => { console.log("Joined successfully", resp) })
-  .receive("error", resp => { console.log("Unable to join", resp) })
+  .receive("ok", resp => { })
+  .receive("error", resp => { console.log("Unable to join channel", resp) })
 
 export default socket

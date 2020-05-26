@@ -2,7 +2,7 @@ defmodule SimpleOtpWeb.UserSocket do
   use Phoenix.Socket
 
   ## Channels
-  # channel "room:*", SimpleOtpWeb.RoomChannel
+  channel "otp_hub:*", SimpleOtpWeb.OtpChannel
 
   # Socket params are passed from the client and can
   # be used to verify and authenticate a user. After
