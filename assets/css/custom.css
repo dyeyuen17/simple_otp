@@ -1,0 +1,123 @@
+* {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+body {
+  padding: 0;
+  margin: 0;
+}
+
+.bg-md-dark {
+  background-color: #1d2227!important;
+}
+
+.bg-bloody {
+  background-color: #dc3545!important;
+}
+
+.tc-bloody {
+  color: #dc3545!important;
+}
+
+.tc-dim {
+  color: #bfbfbf!important;
+}
+
+.tc-dimmer {
+  color: #a7a7a7!important;
+}
+
+.help-block {
+  color: #b12c2c;
+}
+
+.flash {
+  position: relative;
+  padding: .15rem 1.25rem;
+  margin-bottom: 1rem;
+  border: 1px solid;
+  border-radius: .25rem;
+}
+
+.success-flash {
+  color: #2d9a4f;
+  background-color: #1d2127;
+  border-color: #2d9a4f;
+}
+
+.error-flash {
+  color: #dd3545;
+  background-color: #1d2127;
+  border-color: #dd3545;
+}
+
+.card {
+  background-color: #1d2227!important;
+  font-weight: 300!important;
+}
+
+.card-header {
+  background-color: #1d2227!important;
+}
+
+.card-body {
+  background-color: #1d2227!important;
+}
+
+.add-card {
+  height: 176px!important;
+  color: #bfbfbf!important;
+  background-color: #1e22289e!important;
+  border: 2px solid rgba(30, 34, 40, 0.45)!important;
+}
+
+.add-card:hover {
+  border: 2px solid #dc3545!important
+}
+
+.close {
+  opacity: unset!important;
+  color: #6c757c!important;
+  text-shadow: none!important;
+}
+
+.ptop {
+  padding-top: 10rem!important;
+}
+
+.vault-card {
+  height: 176px!important;
+  color: #bfbfbf!important;
+  background-color: #1d2227!important;
+  font-weight: 300!important;
+  border: 2px solid rgba(30, 34, 40, 0.45)!important;
+}
+
+.vault-card:hover {
+  background-color: #dc3545!important;
+}
+
+.green {
+  color: #11ce29;
+}
+
+.red {
+  color: #d6182a;
+}
+
+.cyan {
+  color: #11aace;
+}
+
+.violet {
+  color: #ff00f6;
+}
+
+.gold {
+  color: gold;
+}
+
+.shell-header:hover {
+  background-color: #dc3545!important;
+}
