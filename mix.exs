@@ -44,7 +44,12 @@ defmodule SimpleOtp.MixProject do
       {:jason, "~> 1.0"},
       {:plug_cowboy, "~> 2.0"},
       {:one_time_pass_ecto, "~> 1.0"},
-      {:eqrcode, "~> 0.1.6"}
+      {:eqrcode, "~> 0.1.7"},
+      {:pot, "~>0.10.1"},
+      {:guardian, "~> 2.0"},
+      {:comeonin, "~> 5.3"},
+      {:argon2_elixir, "~> 2.0"},
+      {:quantum, "~> 3.0-rc"}
     ]
   end
 
