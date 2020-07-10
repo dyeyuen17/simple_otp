@@ -2,7 +2,7 @@ name: Production CD
 
 on:
   push:
-    branches: [ production ]
+    branches: [ master ]
 
 jobs:
   build:
@@ -38,7 +38,5 @@ jobs:
         mix edeliver restart production --mix-env=prod --verbose
         mix edeliver migrate production --mix-env=prod --verbose
       env:
-        BUILD_HOST: ${{ secrets.DEPLOYMENT_HOST }}
-        BUILD_USER: ${{ secrets.DEPLOYMENT_USER }}
-        DEPLOY_HOST: ${{ secrets.DEPLOYMENT_HOST }}
-        DEPLOY_USER: ${{ secrets.DEPLOYMENT_USER }}
+        HOST: ${{ secrets.DEPLOYMENT_HOST }}
+        USER: ${{ secrets.DEPLOYMENT_USER }}
