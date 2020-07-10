@@ -10,11 +10,18 @@ use Mix.Config
 # which you should run after static files are built and
 # before starting your production server.
 config :simple_otp, SimpleOtpWeb.Endpoint,
-  url: [host: "example.com", port: 80],
-  cache_static_manifest: "priv/static/cache_manifest.json"
+  url: [host: "simple-otp.dyeytests.tk", port: 80],
+  cache_static_manifest: "priv/static/cache_manifest.json",
+  check_origin: false,
+  code_reloading: false,
+  server: true,
+  code_reloader: false
 
 # Do not print debug messages in production
 config :logger, level: :info
+
+config :simple_otp,
+  environment: :prod
 
 # ## SSL Support
 #

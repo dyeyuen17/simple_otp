@@ -49,7 +49,9 @@ defmodule SimpleOtp.MixProject do
       {:guardian, "~> 2.0"},
       {:comeonin, "~> 5.3"},
       {:argon2_elixir, "~> 2.0"},
-      {:quantum, "~> 3.0-rc"}
+      {:quantum, "~> 3.0-rc"},
+      {:distillery, "~> 2.0"},
+      {:edeliver, ">= 1.6.0"}
     ]
   end
 
