@@ -21,9 +21,6 @@ jobs:
     - uses: webfactory/ssh-agent@v0.2.0
       with:
         ssh-private-key: ${{ secrets.PRIVATE_KEY }}
-        
-    - name: Test secrets
-      run: echo ${{ secrets.TEST_SECRET }}
 
     - name: Initializing Hex
       run: mix local.hex --force
@@ -33,6 +30,9 @@ jobs:
 
     - name: Install dependencies
       run: mix do deps.get, compile
+
+    - name: "Add to list known host"
+      run: ssh -o StrictHostKeyChecking=no "${{ secrets.DEPLOYMENT_USER }}@${{ secrets.DEPLOYMENT_HOST }}" exit
       
     - name: Build and deploy production release
       run: |
