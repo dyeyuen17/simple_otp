@@ -20,7 +20,7 @@ jobs:
 
     - uses: webfactory/ssh-agent@v0.2.0
       with:
-        ssh-private-key: ${{ secrets.PROD_PUBLIC_KEY }}
+        ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
 
     - name: Initializing Hex
       run: mix local.hex --force
