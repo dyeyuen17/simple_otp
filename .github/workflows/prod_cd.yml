@@ -18,9 +18,9 @@ jobs:
         otp-version: 23.0
         elixir-version: 1.10.4
 
-#     - uses: webfactory/ssh-agent@v0.2.0
-#       with:
-#         ssh-private-key: ${{ secrets.PRIVATE_KEY }}
+    - uses: webfactory/ssh-agent@v0.2.0
+      with:
+        ssh-private-key: ${{ secrets.PRIVATE_KEY }}
 
     - name: Initializing Hex
       run: mix local.hex --force
