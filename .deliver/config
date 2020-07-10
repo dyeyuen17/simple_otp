@@ -2,15 +2,15 @@
 
 APP="simple_otp"
 
-BUILD_HOST=$HOST
-BUILD_USER=$USER
+BUILD_HOST=$BUILD_HOST
+BUILD_USER=$BUILD_USER
 BUILD_AT="/tmp/edeliver/$APP/builds"
 
 RELEASE_DIR="/tmp/edeliver/$APP/builds/_build/prod/rel/$APP"
 GIT_CLEAN_PATHS="_build rel priv/static"
 
-PRODUCTION_HOSTS=$HOST
-PRODUCTION_USER=$USER
+PRODUCTION_HOSTS=$DEPLOY_HOST
+PRODUCTION_USER=$DEPLOY_USER
 DELIVER_TO="/home/web"
 
 # For *Phoenix* projects, symlink prod.secret.exs to our tmp source
