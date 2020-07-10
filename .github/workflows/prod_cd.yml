@@ -1,0 +1,48 @@
+name: Production CD
+
+on:
+  push:
+    branches: [ production ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - run: |
+        git fetch --prune --unshallow
+        
+    - uses: actions/setup-elixir@v1
+      with:
+        otp-version: 23.0
+        elixir-version: 1.10.4
+
+    - uses: webfactory/ssh-agent@v0.2.0
+      with:
+        ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
+
+    - name: Initializing Hex
+      run: mix local.hex --force
+
+    - name: Initializing rebar
+      run: mix local.rebar --force
+
+    - name: Install dependencies
+      run: mix deps.get
+
+    - name: Build release to production
+      run: mix edeliver build release to production --mix-env=prod --branch=production --verbose
+
+    - name: Deploy build to production
+      run: mix edeliver deploy release to production mix-env=prod --verbose
+
+    - name: Restart production server
+      run: mix edeliver restart production --mix-env=prod --verbose
+
+    - name: Run migrations
+      run: mix edeliver migrate production --mix-env=prod --verbose
+
+      env:
+        HOST: ${{ secrets.DEPLOYMENT_HOST }}
+        USER: ${{ secrets.DEPLOYMENT_USER }}
