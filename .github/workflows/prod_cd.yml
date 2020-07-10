@@ -12,7 +12,7 @@ jobs:
     - uses: actions/checkout@v2
     - run: |
         git fetch --prune --unshallow
-        
+
     - uses: actions/setup-elixir@v1
       with:
         otp-version: 23.0
@@ -20,7 +20,7 @@ jobs:
 
     - uses: webfactory/ssh-agent@v0.2.0
       with:
-        ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
+        ssh-private-key: ${{ secrets.PROD_PUBLIC_KEY }}
 
     - name: Initializing Hex
       run: mix local.hex --force
