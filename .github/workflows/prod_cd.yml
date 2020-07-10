@@ -45,13 +45,3 @@ jobs:
 
     - name: Run migrations
       run: mix edeliver migrate production --mix-env=prod --verbose
-
-#     - name: Build and deploy production release
-#       run: |
-#         mix edeliver build release to production --mix-env=prod --branch=production --verbose
-#         mix edeliver deploy release to production mix-env=prod --verbose
-#         mix edeliver restart production --mix-env=prod --verbose
-#         mix edeliver migrate production --mix-env=prod --verbose
-#       env:
-#         HOST: ${{ secrets.DEPLOYMENT_HOST }}
-#         USER: ${{ secrets.DEPLOYMENT_USER }}
