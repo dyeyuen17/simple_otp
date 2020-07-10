@@ -31,8 +31,8 @@ jobs:
     - name: Install dependencies
       run: mix do deps.get, compile
 
-    - name: "Add to list known host"
-      run: ssh -o StrictHostKeyChecking=no "${{ secrets.DEPLOYMENT_USER }}@${{ secrets.DEPLOYMENT_HOST }}" exit
+#     - name: "Add to list known host"
+#       run: ssh -o StrictHostKeyChecking=no "${{ secrets.DEPLOYMENT_USER }}@${{ secrets.DEPLOYMENT_HOST }}" exit
       
     - name: Build and deploy production release
       run: |
