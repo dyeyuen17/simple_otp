@@ -7,6 +7,9 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    env:
+      HOST: ${{ secrets.DEPLOYMENT_HOST }}
+      USER: ${{ secrets.DEPLOYMENT_USER }}
 
     steps:
     - uses: actions/checkout@v2
@@ -37,15 +40,11 @@ jobs:
     - name: Deploy build to production
       run: mix edeliver deploy release to production mix-env=prod --verbose
       
-
     - name: Restart production server
       run: mix edeliver restart production --mix-env=prod --verbose
 
     - name: Run migrations
       run: mix edeliver migrate production --mix-env=prod --verbose
-      env:
-        HOST: ${{ secrets.DEPLOYMENT_HOST }}
-        USER: ${{ secrets.DEPLOYMENT_USER }}
 
 #     - name: Build and deploy production release
 #       run: |
