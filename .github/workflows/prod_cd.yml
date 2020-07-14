@@ -36,6 +36,9 @@ jobs:
 #         source: $USER@HOST:$CONFIG_PATH
 #         target: $GITHUB_WORKSPACE/.deliver/config
 
+    - name: List to known hosts
+      run: ssh -o StrictHostKeyChecking=no $USER@$HOST
+
     - name: Run ls
       run: ls
   
