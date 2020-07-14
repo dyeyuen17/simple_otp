@@ -25,16 +25,7 @@ jobs:
     - uses: webfactory/ssh-agent@v0.4.0
       with:
         ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
-
-    - name: Initializing Hex
-      run: mix local.hex --force
-
-    - name: Initializing rebar
-      run: mix local.rebar --force
-
-    - name: Install dependencies
-      run: mix do deps.get, compile
-    
+        
     - name: Copy config file
       uses: appleboy/scp-action@master
       with:
@@ -44,6 +35,15 @@ jobs:
         port: 22
         source: $USER@HOST:$CONFIG_PATH
         target: $GITHUB_WORKSPACE/.deliver/config
+
+    - name: Initializing Hex
+      run: mix local.hex --force
+
+    - name: Initializing rebar
+      run: mix local.rebar --force
+
+    - name: Install dependencies
+      run: mix do deps.get, compile
 
     - name: Build release to production
       run: mix edeliver build release to production --mix-env=prod --branch=production --verbose
