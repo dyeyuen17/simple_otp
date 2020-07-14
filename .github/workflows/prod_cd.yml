@@ -44,17 +44,17 @@ jobs:
     - name: Run LS
       run: ls -la .deliver/
 
-#     - name: Install dependencies
-#       run: mix do deps.get
+    - name: Install dependencies
+      run: mix do deps.get
 
-#     - name: Build release to production
-#       run: mix edeliver build release to production --mix-env=prod --branch=production --verbose
+    - name: Build release to production
+      run: mix edeliver build release to production --mix-env=prod --branch=production --verbose
 
-#     - name: Deploy build to production
-#       run: mix edeliver deploy release to production mix-env=prod --verbose
+    - name: Deploy build to production
+      run: mix edeliver deploy release to production mix-env=prod --verbose
       
-#     - name: Restart production server
-#       run: mix edeliver restart production --mix-env=prod --verbose
+    - name: Restart production server
+      run: mix edeliver restart production --mix-env=prod --verbose
 
-#     - name: Run migrations
-#       run: mix edeliver migrate production --mix-env=prod --verbose
+    - name: Run migrations
+      run: mix edeliver migrate production --mix-env=prod --verbose
