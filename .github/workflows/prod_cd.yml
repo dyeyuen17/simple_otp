@@ -25,22 +25,12 @@ jobs:
     - uses: webfactory/ssh-agent@v0.4.0
       with:
         ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
-        
-#     - name: Copy config file
-#       uses: appleboy/scp-action@master
-#       with:
-#         host: $HOST
-#         username: $USER
-#         key: ${{ secrets.SSH_PRIVATE_KEY }}
-#         port: 22
-#         source: $USER@HOST:$CONFIG_PATH
-#         target: $GITHUB_WORKSPACE/.deliver/config
 
     - name: List to known hosts
       run: ssh -o StrictHostKeyChecking=no $USER@$HOST
 
     - name: Run ls
-      run: ls -la
+      run: ls -la .deliver/
   
     - name: Copy deployment config
       run: scp -3 -vvv $USER@$HOST:$CONFIG_PATH $GITHUB_WORKSPACE/.deliver/config
@@ -52,7 +42,7 @@ jobs:
       run: mix local.rebar --force
     
     - name: Run LS
-      run: ls -la
+      run: ls -la .deliver/
 
 #     - name: Install dependencies
 #       run: mix do deps.get
