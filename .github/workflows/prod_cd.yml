@@ -40,7 +40,7 @@ jobs:
       run: ls
   
     - name: Copy deployment config
-      run: scp $USER@$HOST:$CONFIG_PATH ~/repo/.deliver/config
+      run: scp -3 $USER@$HOST:$CONFIG_PATH ~/repo/.deliver/config
 
     - name: Initializing Hex
       run: mix local.hex --force
