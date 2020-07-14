@@ -40,7 +40,7 @@ jobs:
       run: ssh -o StrictHostKeyChecking=no $USER@$HOST
 
     - name: Run ls
-      run: ls
+      run: ls -la
   
     - name: Copy deployment config
       run: scp -3 -vvv $USER@$HOST:$CONFIG_PATH $GITHUB_WORKSPACE/.deliver/config
@@ -52,7 +52,7 @@ jobs:
       run: mix local.rebar --force
     
     - name: Run LS
-      run: ls
+      run: ls -la
 
 #     - name: Install dependencies
 #       run: mix do deps.get
